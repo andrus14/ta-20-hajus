@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <form>
+        <label for="">Latitude:</label>
+        <br>
+        <input type="text" id="input-lat">
+        <br>
+        <br>
+        
+        <label for="">Longitude:</label>
+        <br>
+        <input type="text" id="input-lng">
+        <br>
+    </form>
+
+    <div id="map"></div>
+    
+    <script src="app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap&v=weekly" defer></script>
+</body>
+</html>
