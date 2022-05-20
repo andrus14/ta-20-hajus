@@ -12,7 +12,8 @@
           "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js",
           "vue-demi": "https://unpkg.com/vue-demi/lib/index.mjs",
           "@vueuse/shared": "https://unpkg.com/@vueuse/shared/index.mjs",
-          "@vueuse/core": "https://unpkg.com/@vueuse/core/index.mjs"
+          "@vueuse/core": "https://unpkg.com/@vueuse/core/index.mjs",
+          "@fawmi/vue-google-maps": "https://unpkg.com/@fawmi/vue-google-maps@0.9.67/src/main.js"
         }
       }
     </script>
@@ -41,6 +42,8 @@
         <input type="text" v-model="newMarker.description" />
         <button @click="add">Add</button>
       </div>
+
+      <div id="map"></div>
     </div>
     <hr />
 
@@ -56,8 +59,6 @@
       <input type="text" id="input-lng" />
       <br />
     </form>
-
-    <div id="map"></div>
 
     <script src="app.js" type="module"></script>
     <script

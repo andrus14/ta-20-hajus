@@ -1,5 +1,9 @@
-import { createApp, ref } from "vue";
+import { createApp, onMounted } from "vue";
 import { useStorage } from "@vueuse/core";
+
+// import VueGoogleMaps from "@fawmi/vue-google-maps";
+
+// console.log(VueGoogleMaps);
 
 createApp({
   setup() {
@@ -31,6 +35,19 @@ createApp({
       delete markers.value[i];
       markers.value = markers.value.filter((marker) => marker);
     }
+
+    function initMap() {
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 58.25, lng: 22.49 },
+        zoom: 14,
+      });
+      let marker = new google.maps.Marker({
+        map: map,
+        position: { lat: 58.25, lng: 22.49 },
+      });
+    }
+    window.initMap = initMap;
+
     return { del, markers, newMarker, editMarker, add, edit, update };
   },
 }).mount("#app");
