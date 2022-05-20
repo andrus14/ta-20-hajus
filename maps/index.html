@@ -20,6 +20,13 @@
   <body>
     <div id="app" style="height: 100vh; padding: 32px">
       <h1>Markers</h1>
+      <input
+        v-for="value in ['lat','long','title','description']"
+        type="text"
+        :value="value"
+        readonly
+        style="border: white; pointer-events: none"
+      />
       <div v-for="marker,i in markers">
         <input type="text" v-model.number="marker.lat" />
         <input type="text" v-model.number="marker.lon" />
@@ -27,19 +34,14 @@
         <input type="text" v-model.number="marker.description" />
         <button @click="del(i)">Delete</button>
       </div>
-
-      <h1>New marker</h1>
-      <input type="text" v-model.number="newMarker.lat" />
-      <br />
-      <input type="text" v-model.number="newMarker.lon" />
-      <br />
-      <input type="text" v-model="newMarker.title" />
-      <br />
-      <textarea v-model="newMarker.description"></textarea>
-      <br />
-      <button @click="add">Add</button>
+      <div>
+        <input type="text" v-model.number="newMarker.lat" />
+        <input type="text" v-model.number="newMarker.lon" />
+        <input type="text" v-model="newMarker.title" />
+        <input type="text" v-model="newMarker.description" />
+        <button @click="add">Add</button>
+      </div>
     </div>
-
     <hr />
 
     <form>
