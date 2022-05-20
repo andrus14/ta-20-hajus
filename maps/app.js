@@ -1,11 +1,11 @@
-import { createApp, onMounted } from "vue";
+import { createApp, watch } from "vue";
 import { useStorage } from "@vueuse/core";
 
 // import VueGoogleMaps from "@fawmi/vue-google-maps";
 
-// console.log(VueGoogleMaps);
+//console.log(VueGoogleMaps);
 
-createApp({
+const app = createApp({
   setup() {
     const empty = {
       lat: undefined,
@@ -36,21 +36,43 @@ createApp({
       markers.value = markers.value.filter((marker) => marker);
     }
 
+    let map = null;
+
     function initMap() {
-      const map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 58.25, lng: 22.49 },
-        zoom: 14,
-      });
-      let marker = new google.maps.Marker({
-        map: map,
-        position: { lat: 58.25, lng: 22.49 },
+      map = new google.maps.Map(document.getElementById("map"), {
+        //center: { lat: 58.25, lng: 22.49 },
+        zoom: 5,
+        center: { lat: 0, lng: 0 },
+        //zoom: 14,
       });
     }
     window.initMap = initMap;
 
+    watch(
+      markers,
+      () => {
+        console.log("muutus");
+        markers.value.forEach((m) => {
+          new google.maps.Marker({
+            map: map,
+            position: { lat: m.lat, lng: m.lon },
+          });
+        });
+      },
+      { deep: true }
+    );
+
     return { del, markers, newMarker, editMarker, add, edit, update };
   },
-}).mount("#app");
+});
+
+// app.use(VueGoogleMaps, {
+//   load: {
+//     key: "YOUR_API_KEY_COMES_HERE",
+//     // language: 'de',
+//   },
+// });
+app.mount("#app");
 
 /*
 let map;
